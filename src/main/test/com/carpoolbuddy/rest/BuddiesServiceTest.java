@@ -18,7 +18,7 @@ import java.net.URI;
  * To change this template use File | Settings | File Templates.
  */
 public class BuddiesServiceTest {
-    @Test
+//    @Test
     public void testFindMatchBuddy() throws Exception {
         URI uri = UriBuilder.fromUri("http://localhost:8080/").build();
 
@@ -32,5 +32,21 @@ public class BuddiesServiceTest {
         // Get XML for application
         System.out.println("App xml:");
         System.out.println(service.path("rest").path("/buddies").accept(MediaType.APPLICATION_XML).get(String.class));
+    }
+
+    @Test
+    public void testFindMatchBuddyWithFromAndToParams() throws Exception {
+        URI uri = UriBuilder.fromUri("http://localhost:8080/").build();
+
+        ClientConfig config = new DefaultClientConfig();
+        Client client = Client.create(config);
+        WebResource service = client.resource(uri);
+
+        // Get JSON for application
+        System.out.println("App Json:");
+        System.out.println(service.path("rest").path("/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_JSON).get(String.class));
+        // Get XML for application
+        System.out.println("App xml:");
+        System.out.println(service.path("rest").path("/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_XML).get(String.class));
     }
 }

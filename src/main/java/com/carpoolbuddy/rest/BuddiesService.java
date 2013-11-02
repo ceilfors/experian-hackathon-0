@@ -3,10 +3,10 @@ package com.carpoolbuddy.rest;
 import com.carpoolbuddy.data.City;
 import com.carpoolbuddy.data.Person;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +22,20 @@ public class BuddiesService {
 
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    public List<Person> findMatchBuddy() {
+    public List<Person> findMatchBuddy(@Context UriInfo info) {
         //get the from and to from person
-        //match with db
-        return mockBuddies();
+        String fromCity = info.getQueryParameters().getFirst("from");
+        String toCity = info.getQueryParameters().getFirst("to");
+
+        //Get this from db
+        List<Person> mockBuds = mockBuddies();
+        List<Person> foundBuds = new ArrayList<Person>();
+        for (Person person : mockBuds) {
+            if (person.getFrom().getName().equals(fromCity) && person.getTo().getName().equals(toCity)) {
+                foundBuds.add(person);
+            }
+        }
+        return foundBuds;
     }
 
     private List<Person> mockBuddies() {
