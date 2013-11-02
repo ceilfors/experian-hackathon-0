@@ -7,8 +7,8 @@
 // In this case it is a simple value service.
 var services = angular.module('carpoolBuddyApp.services', ['ngResource']).
 factory('cityService', function($resource) {
-    return $resource('/cities', {}, {}); 
+    return $resource('/rest/cities', {}, {}); 
 }).
 factory('buddyService', function($resource) {
-    return $resource('/buddies', {}, {});
+    return $resource('/rest/buddies', {}, {});
 })

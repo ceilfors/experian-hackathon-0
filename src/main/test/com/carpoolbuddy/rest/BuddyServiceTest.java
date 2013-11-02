@@ -28,10 +28,10 @@ public class BuddyServiceTest {
 
         // Get JSON for application
         System.out.println("App Json:");
-        System.out.println(service.path("/buddies").accept(MediaType.APPLICATION_JSON).get(String.class));
+        System.out.println(service.path("/rest/buddies").accept(MediaType.APPLICATION_JSON).get(String.class));
         // Get XML for application
         System.out.println("App xml:");
-        System.out.println(service.path("/buddies").accept(MediaType.APPLICATION_XML).get(String.class));
+        System.out.println(service.path("/rest/buddies").accept(MediaType.APPLICATION_XML).get(String.class));
     }
 
     @Test
@@ -44,9 +44,9 @@ public class BuddyServiceTest {
 
         // Get JSON for application
         System.out.println("App Json:");
-        System.out.println(service.path("/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_JSON).get(String.class));
+        System.out.println(service.path("/rest/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_JSON).get(String.class));
         // Get XML for application
         System.out.println("App xml:");
-        System.out.println(service.path("/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_XML).get(String.class));
+        System.out.println(service.path("/rest/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_XML).get(String.class));
     }
 }
