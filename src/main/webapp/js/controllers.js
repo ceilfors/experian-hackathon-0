@@ -4,12 +4,10 @@
 
 angular.module('carpoolBuddyApp.controllers', []).
   controller('BuddyController', ["$scope", "cityService", "buddyService", function($scope, cityService, buddyService) {
-  	$scope.greeting = "Hellow";
-  	$scope.cities = cityService.cities;
-  	$scope.searchBuddy = function() {
-  		$scope.buddies = buddyService.buddies;
+  	$scope.cities = cityService.query({});
+  	$scope.searchBuddy = function(from, to) {
+  		buddyService.query({from: from, to: to}, function(result) {
+  			$scope.buddies = result
+  		});
   	};
   }]);
-  // .controller('MyCtrl2', [function() {
-
-  // }]);
