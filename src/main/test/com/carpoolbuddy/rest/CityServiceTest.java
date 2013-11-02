@@ -18,11 +18,11 @@ import java.net.URI;
  * Time: 4:21 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CitiesServiceTest {
+public class CityServiceTest {
 
     @Test
     public void testGetAllCities() {
-        URI uri = UriBuilder.fromUri("http://localhost:8080/").build();
+        URI uri = UriBuilder.fromUri("http://localhost:8080").build();
 
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
@@ -30,9 +30,9 @@ public class CitiesServiceTest {
 
         // Get JSON for application
         System.out.println("App Json:");
-        System.out.println(service.path("rest").path("/cities").accept(MediaType.APPLICATION_JSON).get(String.class));
+        System.out.println(service.path("/cities").accept(MediaType.APPLICATION_JSON).get(String.class));
         // Get XML for application
         System.out.println("App xml:");
-        System.out.println(service.path("rest").path("/cities").accept(MediaType.APPLICATION_XML).get(String.class));
+        System.out.println(service.path("/cities").accept(MediaType.APPLICATION_XML).get(String.class));
     }
 }

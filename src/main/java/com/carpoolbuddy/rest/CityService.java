@@ -17,7 +17,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Path("/cities")
-public class CitiesService {
+public class CityService {
 
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })

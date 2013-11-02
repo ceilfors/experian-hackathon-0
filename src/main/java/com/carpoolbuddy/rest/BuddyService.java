@@ -4,9 +4,7 @@ import com.carpoolbuddy.data.City;
 import com.carpoolbuddy.data.Person;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,15 +16,12 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Path("/buddies")
-public class BuddiesService {
+public class BuddyService {
 
     @GET
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    public List<Person> findMatchBuddy(@Context UriInfo info) {
-        //get the from and to from person
-        String fromCity = info.getQueryParameters().getFirst("from");
-        String toCity = info.getQueryParameters().getFirst("to");
-
+    public List<Person> findMatchBuddy(@QueryParam("from") String fromCity,
+                                       @QueryParam("to") String toCity) {
         //Get this from db
         List<Person> mockBuds = mockBuddies();
         List<Person> foundBuds = new ArrayList<Person>();

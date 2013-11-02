@@ -17,10 +17,10 @@ import java.net.URI;
  * Time: 4:54 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BuddiesServiceTest {
-//    @Test
+public class BuddyServiceTest {
+    @Test
     public void testFindMatchBuddy() throws Exception {
-        URI uri = UriBuilder.fromUri("http://localhost:8080/").build();
+        URI uri = UriBuilder.fromUri("http://localhost:8080").build();
 
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
@@ -28,15 +28,15 @@ public class BuddiesServiceTest {
 
         // Get JSON for application
         System.out.println("App Json:");
-        System.out.println(service.path("rest").path("/buddies").accept(MediaType.APPLICATION_JSON).get(String.class));
+        System.out.println(service.path("/buddies").accept(MediaType.APPLICATION_JSON).get(String.class));
         // Get XML for application
         System.out.println("App xml:");
-        System.out.println(service.path("rest").path("/buddies").accept(MediaType.APPLICATION_XML).get(String.class));
+        System.out.println(service.path("/buddies").accept(MediaType.APPLICATION_XML).get(String.class));
     }
 
     @Test
     public void testFindMatchBuddyWithFromAndToParams() throws Exception {
-        URI uri = UriBuilder.fromUri("http://localhost:8080/").build();
+        URI uri = UriBuilder.fromUri("http://localhost:8080").build();
 
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
@@ -44,9 +44,9 @@ public class BuddiesServiceTest {
 
         // Get JSON for application
         System.out.println("App Json:");
-        System.out.println(service.path("rest").path("/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_JSON).get(String.class));
+        System.out.println(service.path("/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_JSON).get(String.class));
         // Get XML for application
         System.out.println("App xml:");
-        System.out.println(service.path("rest").path("/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_XML).get(String.class));
+        System.out.println(service.path("/buddies").queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_XML).get(String.class));
     }
 }
