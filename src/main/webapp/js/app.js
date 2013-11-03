@@ -7,10 +7,13 @@ angular.module('carpoolBuddyApp', [
   'carpoolBuddyApp.filters',
   'carpoolBuddyApp.services',
   'carpoolBuddyApp.directives',
-  'carpoolBuddyApp.controllers'
-]);
-// config(['$routeProvider', function($routeProvider) {
-//   // $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-//   // $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-//   // $routeProvider.otherwise({redirectTo: '/view1'});
-// }]);
+  'carpoolBuddyApp.controllers',
+  'facebook'
+]).
+config(['$routeProvider', 'FacebookProvider', function($routeProvider, FacebookProvider) {
+  $routeProvider.when('/', {templateUrl: 'partials/home.html', controller: 'BuddyController'});
+  $routeProvider.when('/buddies/new', {templateUrl: 'partials/buddies/new.html', controller: 'BuddyController'});
+  $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
+  $routeProvider.otherwise({redirectTo: '/'});
+  FacebookProvider.init('197032780481530');
+}]);

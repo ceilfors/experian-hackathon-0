@@ -5,25 +5,13 @@
   <title>Car pool buddy</title>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
-<body ng-controller="BuddyController">
-  <div ng-view></div>
-  <div>
-    From:<br/>
-    <ul>
-      <li ng-repeat="city in cities">{{city.name}}</li>
-    </ul>
-    <input type="text" name="from" ng-model="from" ng-minlength="3">
-    To:<br/>
-    <ul>
-      <li ng-repeat="city in cities">{{city.name}}</li>
-    </ul>
-    <input type="text" name="to" ng-model="to" ng-minlength="3">
-  </div> 
+<body ng-controller="HomeController">
 
-  <button ng-click="searchBuddy(from, to)">Go!</button>
-  <ul>
-    <li ng-repeat="buddy in buddies">{{buddy.name}}</li>
-  </ul>
+   <button type="button" class="btn btn-primary btn-large" ng-show="!logged" ng-disabled="!facebookReady" ng-click="IntentLogin()">Login with Facebook</button>
+   <button type="button" class="btn btn-danger btn-large" ng-show="logged" ng-disabled="!facebookReady" ng-click="logout()">Logout</button>
+
+  <div ng-view></div>
+
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
@@ -31,6 +19,7 @@
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-route.js"></script>
 <script src="lib/angular/angular-resource.js"></script>
+<script src="lib/angular/angular-facebook.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services.js"></script>
 <script src="js/controllers.js"></script>
