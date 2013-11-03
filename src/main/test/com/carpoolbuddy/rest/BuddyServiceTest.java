@@ -46,18 +46,18 @@ public class BuddyServiceTest {
         System.out.println(service.queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_XML).get(String.class));
     }
 
-//    @Test
+    @Test
     public void testCreatePerson() throws Exception {
-//        String input = "{\"name\":\"Micheal Buba\",\"fbid\":\"mb\",\"from\":\"Puchong\",\"to\":\"Cyberjaya\"}";
-//        ClientResponse response = service.path("/rest/buddies").type("application/json")
-//                .post(ClientResponse.class, input);
+        String input = "{\"name\":\"Micheal Buba\",\"fbid\":\"mb\",\"from\":\"Puchong\",\"to\":\"Cyberjaya\"}";
+        ClientResponse response = service.type("application/json")
+                .post(ClientResponse.class, input);
 
-        MultivaluedMap formData = new MultivaluedMapImpl();
-        formData.add("name", "Micheal Buba");
-        formData.add("fbid", "micbub");
-        formData.add("from", "Puchong");
-        formData.add("to", "Cyberjaya");
-        ClientResponse response = service.type("application/x-www-form-urlencoded").post(ClientResponse.class, formData);
+//        MultivaluedMap formData = new MultivaluedMapImpl();
+//        formData.add("name", "Micheal Buba");
+//        formData.add("fbid", "micbub");
+//        formData.add("from", "Puchong");
+//        formData.add("to", "Cyberjaya");
+//        ClientResponse response = service.type("application/x-www-form-urlencoded").post(ClientResponse.class, formData);
 
         if (response.getStatus() != 201) {
             fail(response.toString());
@@ -65,7 +65,7 @@ public class BuddyServiceTest {
 
     }
 
-    @Test
+//    @Test
     public void testFindPersonByFacebook() throws Exception {
         testCreatePerson();
 
