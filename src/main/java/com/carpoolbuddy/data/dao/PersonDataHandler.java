@@ -38,15 +38,16 @@ public class PersonDataHandler {
     }
 
     public Person findPersonByFacebookId(final String facebookId) {
-        Person persons;
         EntityManager entityManager = CarPoolBuddyEntityManagerFactory.getInstance().makeEntityManager();
 
         Query query = entityManager.createQuery("select p from Person p where p.facebookId = :facebookId");
         query.setParameter("facebookId", facebookId);
-        persons = (Person) query.getSingleResult();
+
+        List<Person> persons = new ArrayList<Person>();
+        persons = query.getResultList();
 
         entityManager.close();
 
-        return persons;
+        return persons.get(0);
     }
 }

@@ -3,10 +3,10 @@ package com.carpoolbuddy.rest;
 import com.sun.jersey.api.client.*;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.core.util.*;
 import org.junit.*;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.*;
 import java.net.URI;
 
 import static org.junit.Assert.fail;
@@ -36,7 +36,7 @@ public class BuddyServiceTest {
         service = client.resource(uri);
     }
 
-    @Test
+//    @Test
     public void testFindMatchBuddyWithFromAndToParams() throws Exception {
         // Get JSON for application
         System.out.println("App Json:");
@@ -48,10 +48,16 @@ public class BuddyServiceTest {
 
 //    @Test
     public void testCreatePerson() throws Exception {
-        String input = "{\"name\":\"Micheal Buba\",\"fbid\":\"mb\",\"from\":\"Puchong\",\"to\":\"Cyberjaya\"}";
+//        String input = "{\"name\":\"Micheal Buba\",\"fbid\":\"mb\",\"from\":\"Puchong\",\"to\":\"Cyberjaya\"}";
+//        ClientResponse response = service.path("/rest/buddies").type("application/json")
+//                .post(ClientResponse.class, input);
 
-        ClientResponse response = service.path("/rest/buddies").type("application/json")
-                .post(ClientResponse.class, input);
+        MultivaluedMap formData = new MultivaluedMapImpl();
+        formData.add("name", "Micheal Buba");
+        formData.add("fbid", "micbub");
+        formData.add("from", "Puchong");
+        formData.add("to", "Cyberjaya");
+        ClientResponse response = service.type("application/x-www-form-urlencoded").post(ClientResponse.class, formData);
 
         if (response.getStatus() != 201) {
             fail(response.toString());
@@ -59,13 +65,13 @@ public class BuddyServiceTest {
 
     }
 
-//    @Test
+    @Test
     public void testFindPersonByFacebook() throws Exception {
         testCreatePerson();
 
         // Get JSON for application
         System.out.println("testFindPersonByFacebookId:");
-        System.out.println(service.path("/rest/buddies/fbid/mb")
+        System.out.println(service.path("/fbid/micbub")
                 .accept(MediaType.APPLICATION_JSON).get(String.class));
     }
 }
