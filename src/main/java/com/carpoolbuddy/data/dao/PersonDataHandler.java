@@ -4,6 +4,7 @@ import com.carpoolbuddy.data.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -38,16 +39,19 @@ public class PersonDataHandler {
     }
 
     public Person findPersonByFacebookId(final String facebookId) {
+        Person persons;
         EntityManager entityManager = CarPoolBuddyEntityManagerFactory.getInstance().makeEntityManager();
+        try {
+            Query query = entityManager.createQuery("select p from Person p where p.facebookId = :facebookId");
+            query.setParameter("facebookId", facebookId);
+            persons = (Person) query.getSingleResult();
 
-        Query query = entityManager.createQuery("select p from Person p where p.facebookId = :facebookId");
-        query.setParameter("facebookId", facebookId);
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            entityManager.close();
+        }
 
-        List<Person> persons = new ArrayList<Person>();
-        persons = query.getResultList();
-
-        entityManager.close();
-
-        return persons.get(0);
+        return persons;
     }
 }
