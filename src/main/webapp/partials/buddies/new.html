@@ -2,5 +2,5 @@
 	Name: <input type="text" ng-model="user.name" /><br />
 	From: <input type="text" ng-model="user.from" /><br />
 	To: <input type="text" ng-model="user.to" /><br />
-	<button ng-click="update(user)">Register!</button>
+	<button ng-click="save(user)" ng-disabled="!logged">Register!</button>
 </form>

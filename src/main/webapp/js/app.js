@@ -12,7 +12,7 @@ angular.module('carpoolBuddyApp', [
 ]).
 config(['$routeProvider', 'FacebookProvider', function($routeProvider, FacebookProvider) {
   $routeProvider.when('/', {templateUrl: 'partials/home.html', controller: 'BuddyController'});
-  $routeProvider.when('/buddies/new', {templateUrl: 'partials/buddies/new.html', controller: 'BuddyController'});
+  $routeProvider.when('/buddies/new', {templateUrl: 'partials/buddies/new.html', controller: 'NewBuddyController'});
   $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
   $routeProvider.otherwise({redirectTo: '/'});
   FacebookProvider.init('197032780481530');
