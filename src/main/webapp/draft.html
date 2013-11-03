@@ -38,15 +38,11 @@
             ];
 
             $(document).ready(function() {
-                $(".locations").typeahead({
+                $("input#from").typeahead({
                     name: 'from-locations',
                     local: mockLocations
                 });
-                $("input #from").typeahead({
-                    name: 'from-locations',
-                    local: mockLocations
-                });
-                $("input #to").typeahead({
+                $("input#to").typeahead({
                     name: 'to-locations',
                     local: mockLocations
                 });
