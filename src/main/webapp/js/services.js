@@ -11,4 +11,4 @@ factory('cityService', function($resource) {
 }).
 factory('buddyService', function($resource) {
     return $resource('/rest/buddies', {}, {});
-})
+});
