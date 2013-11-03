@@ -18,9 +18,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String name;
+
+    private String facebookId;
 
     private City from;
 
@@ -29,8 +31,9 @@ public class Person {
 
     public Person() {}
 
-    public Person(String name, City from, City to) {
+    public Person(String name, String facebookId, City from, City to) {
         this.name = name;
+        this.facebookId = facebookId;
         this.from = from;
         this.to = to;
     }
@@ -57,5 +60,13 @@ public class Person {
 
     public void setTo(City to) {
         this.to = to;
+    }
+
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
     }
 }

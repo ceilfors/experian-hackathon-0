@@ -1,6 +1,7 @@
 package com.carpoolbuddy.rest;
 
 import com.carpoolbuddy.data.City;
+import com.carpoolbuddy.data.dao.*;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -23,7 +24,9 @@ public class CityService {
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     public List<City> getAllCities() {
         // The real one should query the cities from database
-        return mockCities();
+        CityDataHandler cityDataHandler = new CityDataHandler();
+        return cityDataHandler.getAllCities();
+//        return mockCities();
     }
 
     private List<City> mockCities() {
