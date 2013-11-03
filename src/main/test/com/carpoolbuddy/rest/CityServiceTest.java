@@ -1,6 +1,6 @@
 package com.carpoolbuddy.rest;
 
-import org.junit.Test;
+import org.junit.*;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
@@ -20,14 +20,23 @@ import java.net.URI;
  */
 public class CityServiceTest {
 
-    @Test
-    public void testGetAllCities() {
-        URI uri = UriBuilder.fromUri("http://localhost:8080").build();
+    private static URI uri;
+    private WebResource service;
 
+    @BeforeClass
+    public static void ClassSetUp() {
+        uri = UriBuilder.fromUri("http://localhost:8282/rest/buddies").build();
+    }
+
+    @Before
+    public void setUp() {
         ClientConfig config = new DefaultClientConfig();
         Client client = Client.create(config);
-        WebResource service = client.resource(uri);
+        service = client.resource(uri);
+    }
 
+    @Test
+    public void testGetAllCities() {
         // Get JSON for application
         System.out.println("App Json:");
         System.out.println(service.path("/rest/cities").accept(MediaType.APPLICATION_JSON).get(String.class));
