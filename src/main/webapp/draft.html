@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Carpool Buddy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="css/typeahead.js-bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+        <style type="text/css">
+            body {
+                background-color: #AC121C;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form class="form-inline">
+                <input id="from" name="from" type="text" class="locations" placeholder="From"/>
+                <input id="to" name="to" type="text" class="locations" placeholder="To"/>
+                <button type="submit" class="btn btn-primary">Go!</button>
+            </form>
+        </div>
+        <div class="container-fluid">
+            <div class="jumbotron">
+                <h2><img class="img-circle" src="img/audi-a1-smaller.jpg"/> Carpool Buddy <small>Find your personal chauffeur</small></h2>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="https://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
+        <script>
+            var mockLocations = [
+                "Cyberjaya",
+                "Putrajaya",
+                "Sri Kembangan",
+                "Puncak Jalil",
+                "Bukit Jalil",
+                "Sungai Besi"
+            ];
+
+            $(document).ready(function() {
+                $(".locations").typeahead({
+                    name: 'from-locations',
+                    local: mockLocations
+                });
+                $("input #from").typeahead({
+                    name: 'from-locations',
+                    local: mockLocations
+                });
+                $("input #to").typeahead({
+                    name: 'to-locations',
+                    local: mockLocations
+                });
+            });
+        </script>
+    </body>
+</html>
