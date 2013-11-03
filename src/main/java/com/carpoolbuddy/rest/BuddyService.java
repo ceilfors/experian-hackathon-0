@@ -3,6 +3,7 @@ package com.carpoolbuddy.rest;
 import com.carpoolbuddy.data.City;
 import com.carpoolbuddy.data.Person;
 import com.carpoolbuddy.data.dao.PersonDataHandler;
+import com.sun.jersey.api.NotFoundException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -37,12 +38,10 @@ public class BuddyService {
 
     @POST
     @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    public Response createPerson(@FormParam("name") String name,
-                                 @FormParam("fbid") String facebookId,
-                                 @FormParam("from") String from,
-                                 @FormParam("to") String to) {
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response createPerson(PersonJson person) {
         PersonDataHandler personDataHandler = new PersonDataHandler();
-        if (personDataHandler.createPerson(new Person(name, facebookId, new City(from), new City(to)))) {
+        if (personDataHandler.createPerson(new Person(person.getName(), person.getFbid(), new City(person.getFrom()), new City(person.getTo())))) {
             return Response.status(201).build();
         } else {
             return Response.status(500).build();
@@ -55,7 +54,9 @@ public class BuddyService {
     public Person findPersonByFacebookId(@PathParam("param") String facebookId) {
         PersonDataHandler personDataHandler = new PersonDataHandler();
         Person person = personDataHandler.findPersonByFacebookId(facebookId);
-
+        if (person == null) {
+            throw new NotFoundException();
+        }
         return person;
     }
 
