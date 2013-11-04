@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -63,12 +64,38 @@ public class PersonDataHandler {
 
         } catch (NoResultException e) {
             return null;
-       // } catch (IndexOutOfBoundsException e){
-            //return null;
         } finally {
             entityManager.close();
         }
 
+        return persons;
+    }
+
+    public List<Person> findBuddiesWithSameFromAndTo(final String fromCityName, final String toCityName) {
+        List<Person> persons = new ArrayList<Person>();
+
+        CityDataHandler cityDataHandler = new CityDataHandler();
+        City fromCity = cityDataHandler.findCity(fromCityName);
+        if (fromCity == null) {
+            return persons;
+        }
+        City toCity = cityDataHandler.findCity(toCityName);
+        if (toCity == null) {
+            return persons;
+        }
+
+        EntityManager entityManager = CarPoolBuddyEntityManagerFactory.getInstance().makeEntityManager();
+        try {
+            Query query = entityManager.createQuery("select p from Person p where p.from.id = :fromCityId and p.to.id = :toCityId");
+            query.setParameter("fromCityId", fromCity.getId());
+            query.setParameter("toCityId", toCity.getId());
+
+            persons = query.getResultList();
+        } catch (NoResultException e) {
+            return persons;
+        } finally {
+            entityManager.close();
+        }
         return persons;
     }
 }

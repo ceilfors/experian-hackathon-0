@@ -27,13 +27,17 @@ public class CityDataHandler {
     }
 
     public City findCity(final String cityName) {
+        List<City> cities;
         EntityManager entityManager = CarPoolBuddyEntityManagerFactory.getInstance().makeEntityManager();
-        Query query = entityManager.createQuery("select c from City c where c.name = :cityname");
-        query.setParameter("cityname", cityName);
-
-        List<City> cities = query.getResultList();
-
-        entityManager.close();
+        try {
+            Query query = entityManager.createQuery("select c from City c where c.name = :cityname");
+            query.setParameter("cityname", cityName);
+            cities = query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            entityManager.close();
+        }
 
         //return the first city currently, possibly want to rethink this once address entity is used
         if (!cities.isEmpty()) {

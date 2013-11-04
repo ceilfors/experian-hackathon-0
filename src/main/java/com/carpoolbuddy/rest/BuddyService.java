@@ -26,14 +26,17 @@ public class BuddyService {
     public List<Person> findMatchBuddy(@QueryParam("from") String fromCity,
                                        @QueryParam("to") String toCity) {
         //Get this from db
-        List<Person> mockBuds = mockBuddies();
-        List<Person> foundBuds = new ArrayList<Person>();
-        for (Person person : mockBuds) {
-            if (person.getFrom().getName().equals(fromCity) && person.getTo().getName().equals(toCity)) {
-                foundBuds.add(person);
-            }
-        }
-        return foundBuds;
+        PersonDataHandler personDataHandler = new PersonDataHandler();
+        return personDataHandler.findBuddiesWithSameFromAndTo(fromCity, toCity);
+
+//        List<Person> mockBuds = mockBuddies();
+//        List<Person> foundBuds = new ArrayList<Person>();
+//        for (Person person : mockBuds) {
+//            if (person.getFrom().getName().equals(fromCity) && person.getTo().getName().equals(toCity)) {
+//                foundBuds.add(person);
+//            }
+//        }
+//        return foundBuds;
     }
 
     @POST
