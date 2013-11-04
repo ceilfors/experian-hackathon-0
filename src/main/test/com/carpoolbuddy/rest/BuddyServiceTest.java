@@ -36,9 +36,10 @@ public class BuddyServiceTest {
         service = client.resource(uri);
     }
 
-//    @Test
+    @Test
     public void testFindMatchBuddyWithFromAndToParams() throws Exception {
-        // Get JSON for application
+        System.out.println("testFindMatchBuddyWithFromAndToParams");
+        //Get JSON for application
         System.out.println("App Json:");
         System.out.println(service.queryParam("from", "Puchong").queryParam("to", "Cyberjaya").accept(MediaType.APPLICATION_JSON).get(String.class));
         // Get XML for application
@@ -48,7 +49,7 @@ public class BuddyServiceTest {
 
     @Test
     public void testCreatePerson() throws Exception {
-        String input = "{\"name\":\"Micheal Popo\",\"fbid\":\"popo\",\"from\":\"Puchong\",\"to\":\"Cyberjaya\"}";
+        String input = "{\"name\":\"Micheal Popo\",\"fbid\":\"micpopo\",\"from\":\"Puchong\",\"to\":\"Cyberjaya\"}";
         ClientResponse response = service.type("application/json")
                 .post(ClientResponse.class, input);
 
