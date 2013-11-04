@@ -68,7 +68,7 @@ controller('IndexController', [
         $scope.logout = function() {
             Facebook.logout(function() {
                 $scope.$apply(function() {
-                    $scope.facebookUser   = {};
+                    $scope.facebookUser = {};
                     $scope.logged = false;  
                 });
             });
@@ -79,8 +79,10 @@ controller('HomeController', [
     function($scope, cityService, buddyService) {
         $scope.cities = cityService.query({});
         $scope.searchBuddy = function(from, to) {
-            buddyService.query({from: from, to: to}, function(result) {
-                $scope.buddies = result
+            buddyService.query({from: from, to: to}, function(buddies) {
+                $scope.buddies = buddies.filter(function(buddy) {
+                    return buddy.id !== $scope.user.id;
+                })
             });
         };
     }]).
