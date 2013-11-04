@@ -48,7 +48,7 @@ public class BuddyServiceTest {
 
     @Test
     public void testCreatePerson() throws Exception {
-        String input = "{\"name\":\"Micheal Buba\",\"fbid\":\"mb\",\"from\":\"Puchong\",\"to\":\"Cyberjaya\"}";
+        String input = "{\"name\":\"Micheal Popo\",\"fbid\":\"popo\",\"from\":\"Puchong\",\"to\":\"Cyberjaya\"}";
         ClientResponse response = service.type("application/json")
                 .post(ClientResponse.class, input);
 

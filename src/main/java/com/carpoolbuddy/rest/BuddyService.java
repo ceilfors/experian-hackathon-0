@@ -2,7 +2,7 @@ package com.carpoolbuddy.rest;
 
 import com.carpoolbuddy.data.City;
 import com.carpoolbuddy.data.Person;
-import com.carpoolbuddy.data.dao.PersonDataHandler;
+import com.carpoolbuddy.data.dao.*;
 import com.sun.jersey.api.NotFoundException;
 
 import javax.ws.rs.*;
@@ -41,10 +41,16 @@ public class BuddyService {
     @Consumes({MediaType.APPLICATION_JSON})
     public Response createPerson(PersonJson person) {
         PersonDataHandler personDataHandler = new PersonDataHandler();
-        if (personDataHandler.createPerson(new Person(person.getName(), person.getFbid(), new City(person.getFrom()), new City(person.getTo())))) {
-            return Response.status(201).build();
-        } else {
-            return Response.status(500).build();
+        DaoResult result = personDataHandler.createPerson(
+                new Person(person.getName(), person.getFbid(), new City(person.getFrom()), new City(person.getTo())));
+
+        switch (result) {
+            case RECORD_CREATED_SUCCESSFULLY:
+                return Response.status(201).build();
+            case RECORD_ALREADY_EXIST:
+            case RECORD_CREATION_FAILED:
+            default:
+                return Response.status(500).build();
         }
     }
 
