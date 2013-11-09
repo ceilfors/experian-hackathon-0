@@ -31,34 +31,6 @@
         <servlet-name>jersey-serlvet</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>jersey-page-serlvet</servlet-name>
-
-        <servlet-class>
-            com.sun.jersey.spi.container.servlet.ServletContainer
-        </servlet-class>
-
-        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>com.carpoolbuddy.page</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.config.property.WebPageContentRegex</param-name>
-            <param-value>/.*html</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-            <param-value>true</param-value>
-        </init-param>
-
-        <load-on-startup>2</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>jersey-page-serlvet</servlet-name>
-        <url-pattern>/page/*</url-pattern>
-    </servlet-mapping>
 </web-app>
 
 
