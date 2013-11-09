@@ -1,52 +1,72 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html ng-app="play">
     <head>
         <title>Carpool Buddy</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="css/typeahead.js-bootstrap.css" type="text/css"/>
-        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/social-buttons.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.css"/>
         <style type="text/css">
-            body {
-                background-color: #AC121C;
+            .header {
+                color: white;
+                font-weight: bold;
+            }
+            .search-history li {
+                list-style-type: none;
+            }
+            .navbar-header {
+                margin-left:5px;
+                width:100%;
             }
         </style>
-    </head>
-    <body>
-        <div class="container">
-            <form class="form-inline">
-                <input id="from" name="from" type="text" class="locations" placeholder="From"/>
-                <input id="to" name="to" type="text" class="locations" placeholder="To"/>
-                <button type="submit" class="btn btn-primary">Go!</button>
-            </form>
-        </div>
-        <div class="container-fluid">
-            <div class="jumbotron">
-                <h2><img class="img-circle" src="img/audi-a1-smaller.jpg"/> Carpool Buddy <small>Find your personal chauffeur</small></h2>
-            </div>
-        </div>
         <script src="https://code.jquery.com/jquery.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="https://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.js"></script>
         <script>
-            var mockLocations = [
-                "Cyberjaya",
-                "Putrajaya",
-                "Sri Kembangan",
-                "Puncak Jalil",
-                "Bukit Jalil",
-                "Sungai Besi"
-            ];
+            var play = angular.module('play', ['ui.bootstrap'])
 
-            $(document).ready(function() {
-                $("input#from").typeahead({
-                    name: 'from-locations',
-                    local: mockLocations
+            play.controller('Test', function($scope, $http) {
+                $http.get('cities/cities.json').success(function(data) {
+                    $scope.cities = data;
                 });
-                $("input#to").typeahead({
-                    name: 'to-locations',
-                    local: mockLocations
-                });
+                $scope.searchHistory = [];
+                $scope.findBuddy = function() {
+                    $scope.searchHistory.push({from: $scope.from, to: $scope.to});
+                };
             });
         </script>
+    </head>
+    <body ng-controller="Test">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="offset10">
+                    <button class="offset1 btn btn-small btn-facebook"><i class="icon-facebook"></i> | Login</button>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12 offset3">
+                    <form ng-submit="findBuddy()" class="form-inline">
+                        <input type="text" class="form-control location" autofocus="true" placeholder="From" ng-model="from" typeahead="city for city in cities | filter: $viewValue">
+                        <input type="text" class="form-control location" placeholder="To" ng-model="to" typeahead="city for city in cities | filter: $viewValue">
+                        <input type="submit" class="btn btn-primary" value="Go!">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span8 offset2">
+                    <ul class="nav nav-tabs nav-stacked" ng-show="searchHistory.length > 0" style="padding: 10px; height: 100%; background-color: white; border-radius: 10px; box-shadow: 2px 2px 4px 1px gray">
+                        <li ng-repeat="search in searchHistory">
+                            {{search.from}} -> {{search.to}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="hero-unit">
+            <h2><img class="img-circle" src="img/audi-a1-smaller.jpg"/> Carpool Buddy <small>Find your personal chauffeur</small></h2>
+        </div>
     </body>
 </html>
