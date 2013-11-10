@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('carpoolBuddyApp.controllers', []).
+angular.module('carpoolBuddyApp.controllers', ['ui.bootstrap']).
 controller('IndexController', [
     "$scope", "Facebook", "$log", "$location", "$resource",
     function($scope, Facebook, $log, $location, $resource) {

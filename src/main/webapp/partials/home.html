@@ -1,20 +1,31 @@
-<button type="button" class="btn btn-primary btn-large" ng-show="!logged" ng-disabled="!facebookReady" ng-click="IntentLogin()">Login with Facebook</button>
-<button type="button" class="btn btn-danger btn-large" ng-show="logged" ng-disabled="!facebookReady" ng-click="logout()">Logout</button>
-
-<div>
-    From:<br/>
-    <ul>
-        <li ng-repeat="city in cities">{{city.name}}</li>
-    </ul>
-    <input type="text" name="from" ng-model="from" ng-minlength="3" ng-model="user.from"><br />
-    To:<br/>
-    <ul>
-        <li ng-repeat="city in cities">{{city.name}}</li>
-    </ul>
-    <input type="text" name="to" ng-model="to" ng-minlength="3" ng-model="user.to"><br/>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="offset10">
+            <button class="btn btn-small btn-facebook" ng-show="!logged" ng-disabled="!facebookReady" ng-click="IntentLogin()"><i class="icon-facebook"></i> | Login</button>
+            <button class="btn btn-danger btn-small" ng-show="logged" ng-disabled="!facebookReady" ng-click="logout()"><i class="icon-facebook"></i> | Logout</button>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12 offset3">
+            <form ng-submit="searchBuddy(from, to)" class="form-inline">
+                <input type="text" class="form-control" autofocus="true" placeholder="From" ng-model="from" ng-model="user.from" typeahead="city.name for city in cities | filter: $viewValue">
+                <input type="text" class="form-control" placeholder="To" ng-model="to" ng-model="user.to" typeahead="city.name for city in cities | filter: $viewValue">
+                <input type="submit" class="btn btn-primary" value="Go!">
+            </form>
+        </div>
+    </div>
 </div>
-
-<button ng-click="searchBuddy(from, to)">Go!</button>
-<ul>
-    <li ng-repeat="buddy in buddies">{{buddy.name}}</li>
-</ul>
+<div class="container">
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <ul class="nav nav-tabs nav-stacked" ng-show="buddies.length > 0" style="padding: 10px; height: 100%; background-color: white; border-radius: 10px; box-shadow: 2px 2px 4px 1px gray">
+                <li ng-repeat="buddy in buddies">
+                    {{buddy.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="hero-unit container-fluid">
+    <h2><img class="img-circle" src="img/audi-a1-smaller.jpg"/> Carpool Buddy <small>Find your personal chauffeur</small></h2>
+</div>
