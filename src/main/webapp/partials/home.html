@@ -5,6 +5,8 @@
             <button class="btn btn-danger btn-small" ng-show="logged" ng-disabled="!facebookReady" ng-click="logout()"><i class="icon-facebook"></i> | Logout</button>
         </div>
     </div>
+</div>
+<div class="container">
     <div class="row-fluid">
         <div class="span12 offset3">
             <form ng-submit="searchBuddy(from, to)" class="form-inline">
@@ -18,6 +20,9 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span8 offset2">
+            <ul class="alert alert-error" ng-show="buddies.length == 0">
+                <strong>No buddy is using that route.</strong>
+            </ul>
             <ul class="nav nav-tabs nav-stacked" ng-show="buddies.length > 0" style="padding: 10px; height: 100%; background-color: white; border-radius: 10px; box-shadow: 2px 2px 4px 1px gray">
                 <li ng-repeat="buddy in buddies">
                     {{buddy.name}}
@@ -25,7 +30,4 @@
             </ul>
         </div>
     </div>
-</div>
-<div class="hero-unit container-fluid">
-    <h2><img class="img-circle" src="img/audi-a1-smaller.jpg"/> Carpool Buddy <small>Find your personal chauffeur</small></h2>
 </div>

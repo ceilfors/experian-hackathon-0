@@ -1,6 +1,22 @@
-<form novalidate class="simple-form" ng-submit="save(user)">
-	Name: <input type="text" ng-model="user.name" /><br />
-	From: <input type="text" ng-model="user.from" /><br />
-	To: <input type="text" ng-model="user.to" /><br />
-	<button type="submit" id="submit" ng-disabled="!logged">Register!</button>
-</form>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span9">
+            <h3>Where do you want to go today, {{user.name}}?</h3>
+        </div>
+        <div class="offset10">
+            <button class="btn btn-small btn-facebook" ng-show="!logged" ng-disabled="!facebookReady" ng-click="IntentLogin()"><i class="icon-facebook"></i> | Login</button>
+            <button class="btn btn-danger btn-small" ng-show="logged" ng-disabled="!facebookReady" ng-click="logout()"><i class="icon-facebook"></i> | Logout</button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row-fluid">
+        <div class="span12 offset3">
+            <form novalidate ng-submit="save(user)" class="form-inline" >
+                <input type="text" class="form-control" autofocus="true" placeholder="From" ng-model="user.from">
+                <input type="text" class="form-control" placeholder="To" ng-model="user.to">
+                <input type="submit" class="btn btn-primary" ng-disabled="!logged" value="Register!">
+            </form>
+        </div>
+    </div>
+</div>
