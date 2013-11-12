@@ -15,18 +15,24 @@ Mong Kok Seong
 - To learn something
 - To produce "something"
 
-## Carpool Buddy
-
 ### Introduction
 
-```Wisen wanna intro?```
+Hackathon - cool word
+(Carpool Buddy)
 
 ### Demo
 
 ### Mong sharing
-#### Point 1
-#### Point 2
-#### Point 3
+#### planning for it
+##### ideas
+##### requirement
+##### basic knowledge
+#### hacking in progress...
+##### set up central repository
+##### RESTful web service application with Jersey
+##### database with Mongodb via datanucleus (class enhancer)
+#### should i hack?
+##### Why shouldn't you?
 
 ### Wisen sharing
 #### Facebook login
