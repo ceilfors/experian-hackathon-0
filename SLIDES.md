@@ -35,9 +35,8 @@ Hackathon - cool word
 ##### Why shouldn't you?
 
 ### Wisen sharing
-#### Facebook login
-#### Point 2
-#### Point 3
+#### World without strangers (and managers)
+#### Resftul SPA
 
 ### Yih Tsern sharing
 #### Underestimation
