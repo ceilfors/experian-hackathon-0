@@ -26,7 +26,7 @@ Nov 2-3
 #### Point 3
 
 ### Wisen sharing
-#### Point 1
+#### Facebook login
 #### Point 2
 #### Point 3
 
