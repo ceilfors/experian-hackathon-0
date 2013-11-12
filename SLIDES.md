@@ -10,8 +10,6 @@ Nov 2-3
 ## Objective
 
 - To learn something
-  - Contribute to open source
-  - How to join the open source community
 - To produce "something"
 
 ## Carpool Buddy
