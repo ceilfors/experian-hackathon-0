@@ -7,6 +7,9 @@ hackathon.init()
 Nov 2-3  
 24 hours
 
+## Organizer
+Mong Kok Seong
+
 ## Objective
 
 - To learn something
