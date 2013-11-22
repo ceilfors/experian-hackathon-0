@@ -22,7 +22,7 @@ Running the app
 
 Key learnings
 -------------
-* Setting up JPA + Datanucleus + MongoDB
+* Datanucleus + JPA + MongoDB
 * Jersey
 * AngularJS + REST ($resource)
 * Facebook login: https://github.com/Ciul/angular-facebook
